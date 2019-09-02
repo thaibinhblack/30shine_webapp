@@ -1,12 +1,15 @@
 <template>
     <div class="header-title row">
-            <div class="col-sm-8 left-header">
+            
+            <div class="col-sm-7 left-header">
                 <h3>{{title}}</h3>
             </div>
-            <div class="col-sm-4 right-header">
+            <div class="col-sm-5 right-header">
                 <ul class="list-link">
                     <li><v-icon>mdi-home</v-icon><a href="./manager">Home</a></li>
                     <li><v-icon>mdi-chevron-right</v-icon></li>
+                    <li v-if="sublink"><a :href="sublink.link">{{sublink.name}}</a></li>
+                    <li  v-if="sublink"><v-icon>mdi-chevron-right</v-icon></li>
                     <li>{{link}}</li>
                 </ul>
             </div>
@@ -26,7 +29,7 @@
 <script>
 import {mapActions} from 'vuex'
 export default {
-    props: ["title", "link", "store", "service", "booking", "question"],
+    props: ["title", "link", "store", "service", "booking", "question", "sublink"],
     components: {
         'message-alert': require('@/components/AlertMessage.vue').default
     },

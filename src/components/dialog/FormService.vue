@@ -52,7 +52,7 @@ import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex';
 export default {
     computed: {
-        ...mapGetters(["getDialogService"])
+        ...mapGetters(["getDialogService", "BASE_URL"])
     },
     data()
     {
@@ -84,7 +84,7 @@ export default {
             data.append("UUID_SERVICE",this.service.UUID_SERVICE)
             data.append("NAME_SERVICE",this.service.NAME_SERVICE)
             data.append("IMAGE_SERVICE",this.service.IMAGE_SERVICE)
-            axios.post("http://127.0.0.1:8000/api/v1/service",data)
+            axios.post(this.BASE_URL + "service",data)
             .then((response) => {
                 this.service = {}
                 this.service.UUID_SERVICE = uuid.v4()

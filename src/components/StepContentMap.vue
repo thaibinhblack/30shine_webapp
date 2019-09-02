@@ -30,10 +30,10 @@ export default {
         }
     },
     components: {
-        'select-map': require('../components/SelectMap.vue').default
+        'select-map': () => import('@/components/SelectMap.vue')
     },
     computed:{
-        ...mapGetters(["getStore", "getUUID"])
+        ...mapGetters(["getStore", "getUUID", "BASE_URL"])
     },
     methods: {
         ...mapActions(["commitDataFirebase", "commitStep"]),
@@ -66,7 +66,7 @@ export default {
         
         ApiUpdateBooking(data)
         {
-            axios.put('http://127.0.0.1:8000/api/v1/booking/'+this.getUUID+'?action=2',data).then((response) => {
+            axios.put(this.BASE_URL + 'booking/'+this.getUUID+'?action=2',data).then((response) => {
                 console.log(response.data)
             })
         },

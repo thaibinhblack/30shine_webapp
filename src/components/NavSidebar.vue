@@ -1,8 +1,7 @@
 <template>
-<v-card max-width="250px" height="100%">
+<v-card  class="left-sidebar" :class="{active: classActive}" height="100%">
     <v-navigation-drawer
     permanent
-    expand-on-hover
     width="100%"
     >
     <template v-slot:prepend>
@@ -38,11 +37,38 @@
                     </v-list-item-icon>
                     <v-list-item-title>Quản lý booking</v-list-item-title>
             </template>
-            <v-list-item link class="item-sub" to="bookings">
-                <v-list-item-title>Danh sách booking</v-list-item-title>
-                <v-icon>mdi-eye</v-icon>
+            <v-list-item link class="item-sub" >
+                <v-list-item-title><router-link to="/manager/bookings"> Danh sách booking</router-link></v-list-item-title>
+               
             </v-list-item>    
         </v-list-group>
+        <!-- Quản lý user -->
+        <v-list-group>
+            <template v-slot:activator>
+                <v-list-item-icon>
+                    <v-icon>mdi-account</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                    Quản lý nhân viên
+                </v-list-item-title>
+            </template>
+            <v-list-item link class="item-sub">
+                
+                <v-list-item-title>
+                    <router-link to="/manager/users">
+                        Danh sách nhân viên
+                    </router-link>
+                </v-list-item-title>
+            </v-list-item>
+            <v-list-item link class="item-sub">
+                <v-list-item-title>
+                    <router-link to="/manager/add-user">
+                        Thêm mới nhân viên
+                    </router-link>
+                </v-list-item-title>
+            </v-list-item>
+        </v-list-group>
+        <!-- Quản lý chi nhánh -->
         <v-list-group >
            <template v-slot:activator>
               
@@ -57,15 +83,20 @@
                 </v-list-item-title>
                 
             </v-list-item>
-            <v-list-item link to="add-store" class="item-sub">
-                <v-list-item-title>
-                    Thêm chi nhánh
+            <v-list-item link class="item-sub">
+                <v-list-item-title >
+                    <router-link to="/manager/add-store">
+                        Thêm chi nhánh
+                    </router-link>
+                    
                 </v-list-item-title>
                 
             </v-list-item>
              <v-list-item link to="services" class="item-sub">
                 <v-list-item-title>
-                    Danh sách dịch vụ
+                   <router-link to="/manager/services">
+                        Danh sách dịch vụ
+                   </router-link>
                 </v-list-item-title>
                 
             </v-list-item>
@@ -77,16 +108,45 @@
                 </v-list-item-icon>
                 <v-list-item-title>Quản lý cẩu hỏi</v-list-item-title>
             </template>
-            <v-list-item link to="questions" class="item-sub">
-                <v-list-item-title>Danh sách câu hỏi</v-list-item-title>
+            <v-list-item link class="item-sub">
+                <v-list-item-title>
+                    <router-link to="/manager/questions">
+                        Danh sách câu hỏi
+                    </router-link>
+                </v-list-item-title>
             </v-list-item>
         </v-list-group>
+        <v-list-item link to="/manager/history">
+            <v-list-item-icon><v-icon>mdi-history</v-icon></v-list-item-icon>
+            <v-list-item-title>
+                    Quản lý lịch sử
+            </v-list-item-title>
+        </v-list-item>
     </v-list>
 </v-navigation-drawer>
 </v-card>
 
 </template>
 
+<script>
+export default {
+    props: ["classActive"],
+    data()
+    {
+        return {
+            url: "http://localhost:24181"
+        }
+    },
+    created()
+    {
+        console.log(this.$route)
+    }
+}
+</script>
+
 <style scoped>
 .item-sub {padding-left: 45px;text-transform: uppercase}
+.left-sidebar {width: 0}
+.left-sidebar.active {width: 250px}
+a {text-decoration: none}
 </style>

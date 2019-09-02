@@ -8,6 +8,10 @@
 export default {
     components: {
         'layout-manager': require('@/layout/LayoutManager.vue').default
+    },
+    created()
+    {
+    
     }
 }
 </script>

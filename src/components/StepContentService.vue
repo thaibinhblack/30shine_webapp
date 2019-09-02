@@ -70,7 +70,7 @@
                         <v-btn class="btn-booking"  @click="commitStep(1)"> <v-icon>mdi-chevron-left</v-icon> Quay Lại</v-btn>
                     </v-flex>
                     <v-flex xs12 sm6 class="btn">
-                        <v-btn class="btn-booking" color="primary" @click="NextStep(3)">Tiếp Tục <v-icon>mdi-chevron-right</v-icon></v-btn>
+                        <v-btn class="btn-booking" color="primary" @click="NextStep(3)">Tiếp Tục {{getUUID_ROOM}} <v-icon>mdi-chevron-right</v-icon></v-btn>
                     </v-flex>
                 </v-layout>
             </div>
@@ -84,10 +84,10 @@ import moment from 'moment'
 export default {
     components:
     {
-        'tab-time': require('../components/TabTimes.vue').default,
-        'tab-service': require('../components/TabService.vue').default,
-        'tab-code': require('../components/TabCode.vue').default,
-        'tab-stylist': require('../components/TabItemStylist.vue').default
+        'tab-time': () => import('@/components/TabTimes.vue'),
+        'tab-service': () => import('@/components/TabService.vue'),
+        'tab-code': () => import('@/components/TabCode.vue'),
+        'tab-stylist': () => import('@/components/TabItemStylist.vue')
     },
     data()
     {

@@ -42,6 +42,22 @@ const routes = [
                 path: 'questions',
                 component: loadComponent('manager/question/DataQuestion')
             },
+            {
+                path: 'booking/:uuid',
+                component: loadView('Manager/booking/DetailBooking')
+            },
+            {
+                path: 'users',
+                component: loadView('Manager/user/ListUser')
+            },
+            {
+                path: 'add-user',
+                component: loadView('Manager/user/AddUser')
+            },
+            {
+                path: 'user/:uuid',
+                component: loadView('Manager/user/DetailUser')
+            }
         ]
     },
     {

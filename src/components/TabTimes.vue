@@ -47,6 +47,7 @@ export default {
             axios.get(this.BASE_URL + "room?type=UUID_STORE&value="+this.getStore.UUID_STORE)
             .then((response) => {
                 this.rooms = response.data
+                this.commitUUID_ROOM(response.data[0].UUID_ROOM)
                 const now = new Date()
                 const date = now.getFullYear()+ '-'+ parseInt(now.getMonth() + 1)  + '-'+ now.getDate()
                
@@ -54,7 +55,7 @@ export default {
         },
         checkRoom(UUID)
         {
-            
+             this.commitUUID_ROOM(UUID)
             const date = new Date()
             if(date.getDay() != this.tab)
             {
@@ -71,7 +72,7 @@ export default {
                     date.setDate(date.getDate() + day)
                 }
                 
-                console.log(date.getFullYear(),date.getMonth(),date.getDate()) 
+                // console.log(date.getFullYear(),date.getMonth(),date.getDate()) 
                
             }
         }
